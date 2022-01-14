@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{jobapp.company}} {{jobapp.job_title}} Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ jobapp.company }}</span>
+    <p>Excitement: {{ jobapp.excitement_level }}</p>
+    <p>Job Title: {{ jobapp.job_title }}</p>
+    <p>Description: {{ jobapp.description }}</p>
+    <p>Submission Date: {{ jobapp.submission_date }}</p>
+    <p>Follow Up Date: {{ jobapp.follow_up_date }}</p>
+    <p>notes: {{ jobapp.notes }}</p>
+    <p>Resume Used: {{ jobapp.resume_url }}</p>
+    <p>Cover Letter Used: {{ jobapp.cover_letter_url }}</p>
+  </div>
+  <div class="card-action">
+    <a href="">Edit</a>
+    <a href="">Delete</a>
+  </div>
+</div>
+
+{% endblock %}
