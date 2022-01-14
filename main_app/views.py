@@ -19,6 +19,10 @@ def apps_index(request):
   jobapps = JobApp.objects.all()
   return render(request, 'job_applications/index.html', { 'jobapps': jobapps })
 
+def apps_detail(request, jobapp_id):
+  jobapp = JobApp.objects.get(id=jobapp_id)
+  return render(request, 'job_applications/detail.html', { 'jobapp': jobapp })
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':

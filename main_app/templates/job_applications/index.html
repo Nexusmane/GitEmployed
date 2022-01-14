@@ -5,12 +5,13 @@
 
 {% for job in jobapps %}
   <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ job.company }}</span>
-      <p>Title: {{ job.job_title }}</p>
-      <p>Excitement: {{ job.excitement_level }}</p>
-    </div>
-   </a>
+    <a href="{% url 'apps_detail' job.id %}">
+      <div class="card-content">
+        <span class="card-title">{{ job.company }}</span>
+        <p>Title: {{ job.job_title }}</p>
+        <p>Excitement: {{ job.excitement_level }}</p>
+      </div>
+    </a>
   </div>
 {% endfor %}
 
