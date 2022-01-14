@@ -20,6 +20,7 @@
                 </ul>
                 <ul class="right">
                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'apps_create' %}">New Job</a></li>
                     <li><a href="{% url 'logout' %}">Git Out</a></li>
                     {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
