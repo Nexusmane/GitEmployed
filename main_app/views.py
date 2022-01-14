@@ -13,7 +13,11 @@ from .models import JobApp
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+  return render(request, 'home.html')
+
+def apps_index(request):
+  jobapps = JobApp.objects.all()
+  return render(request, 'job_applications/index.html', { 'jobapps': jobapps })
 
 def signup(request):
   error_message = ''
