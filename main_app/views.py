@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 
-from .models import JobApp
+from .models import JobApp, Resource
 
 # Create your views here.
 
@@ -54,3 +54,16 @@ class JobAppUpdate(LoginRequiredMixin, UpdateView):
 class JobAppDelete(LoginRequiredMixin, DeleteView):
     model = JobApp
     success_url = '/apps/index/'
+
+
+def resources_index(request):
+  resources = Resource.objects.all()
+  return render(request, 'resources/index.html', {'resources': resources})
+
+class ResourceCreate(LoginRequiredMixin, CreateView):
+    model = Resource
+    fields = ['category', 'title', 'content', 'resource_url', 'replies']
+
+    def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
