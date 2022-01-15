@@ -20,6 +20,8 @@
                 </ul>
                 <ul class="right">
                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'resources_create' %}">New Resource</a></li>
+                    <li><a href="{% url 'resources_index' %}">Resources</a></li>
                     <li><a href="{% url 'jobapps_create' %}">New Job</a></li>
                     <li><a href="{% url 'jobapps_index' %}">My Jobs</a></li>
                     <li><a href="{% url 'logout' %}">Git Out</a></li>
