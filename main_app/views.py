@@ -1,3 +1,4 @@
+from http.client import UPGRADE_REQUIRED
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
@@ -45,3 +46,11 @@ class JobAppCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
+
+class JobAppUpdate(LoginRequiredMixin, UpdateView):
+    model = JobApp
+    fields = ['excitement_level', 'job_title', 'description', 'follow_up_date', 'job_post_url', 'notes', 'resume_url', 'cover_letter_url']
+
+class JobAppDelete(LoginRequiredMixin, DeleteView):
+    model = JobApp
+    success_url = '/apps/index/'
