@@ -22,4 +22,4 @@ class JobApp(models.Model):
         return f"App for {self.company}"
 
     def get_absolute_url(self):
-        return reverse('apps_index')
+        return reverse('jobapps_index')
