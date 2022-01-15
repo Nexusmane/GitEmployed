@@ -3,6 +3,16 @@ from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
 
+CATEGORIES = (
+    ('IP', 'Interview Prep'),
+    ('CC', 'Coding Challenge'),
+    ('AL', 'Algorithms'),
+    ('DS', 'Data Structures'),
+    ('CS', 'Cheat Sheets'),
+    ('RT', 'Resume Tips'),
+    ('HR', 'Hiring Resources'),
+)
+
 # Create your models here.
 class JobApp(models.Model):
     company = models.CharField(max_length=100)
@@ -23,3 +33,22 @@ class JobApp(models.Model):
 
     def get_absolute_url(self):
         return reverse('jobapps_index')
+
+class Resource(models.Model):
+    category = models.CharField(
+        max_length=2,
+        choices=CATEGORIES,
+        default=CATEGORIES[0][0],
+    )
+    title = models.CharField(max_length=150)
+    content = models.CharField(max_length=999)
+    resource_url = models.CharField(max_length=100)
+    replies = models.CharField(max_length=250)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.title}"
+    
+    def get_absolute_url(self):
+        return reverse('resources_index')
