@@ -6,11 +6,11 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-
 from .models import JobApp, Resource
+from .forms import CommentForm
+from datetime import date, datetime
 
 # Create your views here.
 
@@ -63,8 +63,18 @@ def resources_index(request):
 
 def resources_detail(request, resource_id):
   resource = Resource.objects.get(id=resource_id)
-  return render(request, 'resources/detail.html', { 'resource': resource })
+  comment_form = CommentForm()
+  return render(request, 'resources/detail.html', { 'resource': resource, 'comment_form': comment_form })
 
+def add_comment(request, resource_id):
+  form = CommentForm(request.POST)
+  if form.is_valid(): 
+    new_comment = form.save(commit=False)
+    new_comment.resource_id = resource_id
+    new_comment.comment_date = datetime.now()
+    new_comment.user = request.user
+    new_comment.save()
+  return redirect('resources_detail', resource_id=resource_id)
 
 class ResourceCreate(LoginRequiredMixin, CreateView):
     model = Resource

@@ -15,4 +15,5 @@ urlpatterns = [
     path('resources/<int:resource_id>/detail/', views.resources_detail, name='resources_detail'),
     path('resources/<int:pk>/udpate', views.ResourceUpdate.as_view(), name='resources_update'),
     path('resources/<int:pk>/delete', views.ResourceDelete.as_view(), name='resources_delete'),
+    path('resources/<int:resource_id>/detail/add_comment', views.add_comment, name='add_comment')
 ]

@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from datetime import date
 from django.contrib.auth.models import User
 
 CATEGORIES = (
@@ -14,6 +13,7 @@ CATEGORIES = (
 )
 
 # Create your models here.
+
 class JobApp(models.Model):
     company = models.CharField(max_length=100)
     job_title = models.CharField(max_length=50)
@@ -43,7 +43,6 @@ class Resource(models.Model):
     title = models.CharField(max_length=150)
     content = models.CharField(max_length=999)
     resource_url = models.CharField(max_length=100)
-    replies = models.CharField(max_length=250)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -51,3 +50,15 @@ class Resource(models.Model):
     
     def get_absolute_url(self):
         return reverse('resources_index')
+
+class Comment(models.Model):
+    content = models.CharField(max_length=140)
+    comment_date = models.DateField('Comment Posted On:')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.content}"
+
+    class Meta:
+        ordering=['-comment_date']
