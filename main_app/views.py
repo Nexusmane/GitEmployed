@@ -1,4 +1,5 @@
 from http.client import UPGRADE_REQUIRED
+from importlib import resources
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
@@ -58,7 +59,12 @@ class JobAppDelete(LoginRequiredMixin, DeleteView):
 
 def resources_index(request):
   resources = Resource.objects.all()
-  return render(request, 'resources/index.html', {'resources': resources})
+  return render(request, 'resources/index.html', { 'resources': resources })
+
+def resources_detail(request, resource_id):
+  resource = Resource.objects.get(id=resource_id)
+  return render(request, 'resources/detail.html', { 'resource': resource })
+
 
 class ResourceCreate(LoginRequiredMixin, CreateView):
     model = Resource

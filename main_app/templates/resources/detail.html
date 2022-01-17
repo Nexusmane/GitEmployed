@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{resource.title}} Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ resource.title }}</span>
+    <p>Excitement: {{ resource.resource_url }}</p>
+    <p>Job Title: {{ resource.content }}</p>
+    <p>Description: {{ resource.replies }}</p>
+  </div>
+  <div class="card-action">
+  </div>
+</div>
+
+{% endblock %}
