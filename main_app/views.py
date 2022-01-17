@@ -73,3 +73,12 @@ class ResourceCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
       form.instance.user = self.request.user
       return super().form_valid(form)
+
+
+class ResourceUpdate(LoginRequiredMixin, UpdateView):
+  model = Resource
+  fields = ['category', 'title', 'content', 'resource_url']
+
+class ResourceDelete(LoginRequiredMixin, DeleteView):
+  model = Resource
+  success_url = '/resources/index/'

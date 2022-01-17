@@ -12,6 +12,10 @@
   </div>
   <div class="card-action">
   </div>
+  <div class="card-action">
+    <a href="{% url 'resources_update' resource.id %}">Edit</a>
+    <a href="{% url 'resources_delete' resource.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
