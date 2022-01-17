@@ -12,6 +12,25 @@
   </div>
   <div class="card-action">
   </div>
+  <div class="card-action">
+    <a href="{% url 'resources_update' resource.id %}">Edit</a>
+    <a href="{% url 'resources_delete' resource.id %}">Delete</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="col s6">
+    <form action="{% url 'add_comment' resource.id %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form.as_p }}
+      <input type="submit" class="btn" value="Comment">
+    </form>
+    <br>
+        {% for comment in resource.comment_set.all %}
+            <p>@{{comment.user}}</p>
+            <p>{{comment.content}}</p>
+            <p>{{comment.comment_date}}</p>
+        {% endfor %}
 </div>
 
 {% endblock %}

@@ -4,3 +4,4 @@ from .models import *
 # Register your models here.
 admin.site.register(JobApp)
 admin.site.register(Resource)
+admin.site.register(Comment)
