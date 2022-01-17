@@ -10,5 +10,6 @@ urlpatterns = [
     path('apps/<int:jobapp_id>/', views.apps_detail, name='jobapps_detail'),
     path('apps/<int:pk>/udpate', views.JobAppUpdate.as_view(), name='jobapps_update'),
     path('apps/<int:pk>/delete', views.JobAppDelete.as_view(), name='jobapps_delete'),
-
+    path('resources/create/', views.ResourceCreate.as_view(), name='resources_create'),
+    path('resources/index/', views.resources_index, name='resources_index')
 ]
