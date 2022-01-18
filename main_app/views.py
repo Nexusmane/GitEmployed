@@ -67,7 +67,11 @@ def resources_index(request):
 def resources_detail(request, resource_id):
   resource = Resource.objects.get(id=resource_id)
   comment_form = CommentForm()
-  return render(request, 'resources/detail.html', { 'resource': resource, 'comment_form': comment_form })
+  favorite = Favorite.objects.filter(user=request.user).values_list('resource_id', flat=True)
+  # if favorite is True:
+  favorite_id = Favorite.objects.filter(resource_id=resource_id).first()
+  return render(request, 'resources/detail.html', { 'resource': resource, 'comment_form': comment_form, 'favorite': favorite, 'favorite_id': favorite_id })
+
 
 def add_comment(request, resource_id):
   form = CommentForm(request.POST)
@@ -100,6 +104,10 @@ class ResourceDelete(LoginRequiredMixin, DeleteView):
 def favorites_index(request):
   user_favorites = Favorite.objects.filter(user=request.user)
   return render(request, 'favorites/index.html', {'favorites': user_favorites})
+
+def favorites_delete(request, favorite_id):
+  Favorite.objects.filter(id=favorite_id).delete()
+  return redirect('favorites_index')
 
 @login_required
 def assoc_resource(request, resource_id):

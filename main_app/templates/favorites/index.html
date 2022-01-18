@@ -5,10 +5,12 @@
 
 {% for resource in favorites %}
   <div class="card">
+    <a href="{% url 'resources_detail' resource.resource.id %}">
       <div class="card-content">
-        <span class="card-title">{{ resource.title }}</span>
-        <p>URL: {{ resource.resource_url }}</p>
-        <p>Content: {{ resource.resource }}</p>
+        <span class="card-title">{{ resource.resource.title }}</span>
+        <p>Category: {{ resource.resource.get_category_display }}</p>
+        <p>URL: {{ resource.resource.resource_url }}</p>
+        <p>Content: {{ resource.resource.content }}</p>
       </div>
     </a>
   </div>

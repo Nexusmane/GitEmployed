@@ -18,4 +18,5 @@ urlpatterns = [
     path('resources/<int:resource_id>/detail/add_comment', views.add_comment, name='add_comment'),
     path('favorites/index', views.favorites_index, name='favorites_index'),
     path('favorites/<int:resource_id>/', views.assoc_resource, name='assoc_resource'),
+    path('favorites/<int:favorite_id>/delete', views.favorites_delete, name='favorites_delete'),
 ]
