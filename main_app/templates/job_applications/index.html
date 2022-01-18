@@ -3,6 +3,11 @@
 
 <h1>Application List</h1>
 
+<form method="get" action="{% url 'jobapps_create' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" class="btn" value="Create New JobApp">
+</form>
 {% for job in jobapps %}
   <div class="card">
     <a href="{% url 'jobapps_detail' job.id %}">

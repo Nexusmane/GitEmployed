@@ -14,4 +14,21 @@
         </table>
         <input type="submit" value="Submit!" class="btn">
     </form>
+
+    <script>
+        const dateEl = document.getElementById('id_submission_date');
+        M.Datepicker.init(dateEl, {
+          format: 'yyyy-mm-dd',
+          defaultDate: new Date(),
+          setDefaultDate: true,
+          autoClose: true
+        });
+        const dateEl2 = document.getElementById('id_follow_up_date');
+        M.Datepicker.init(dateEl2, {
+          format: 'yyyy-mm-dd',
+          defaultDate: new Date(),
+          setDefaultDate: true,
+          autoClose: true
+        });
+    </script>
 {% endblock %}
