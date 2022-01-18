@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(JobApp)
 admin.site.register(Resource)
 admin.site.register(Comment)
+admin.site.register(Favorite)
