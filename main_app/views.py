@@ -8,11 +8,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import JobApp, Resource
+from .models import JobApp, Resource, Favorite
 from .forms import CommentForm
 from datetime import date, datetime
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from django.dispatch import receiver
 
-# Create your views here.
+
 
 def home(request):
   return render(request, 'home.html')
@@ -78,7 +81,7 @@ def add_comment(request, resource_id):
 
 class ResourceCreate(LoginRequiredMixin, CreateView):
     model = Resource
-    fields = ['category', 'title', 'content', 'resource_url', 'replies']
+    fields = ['category', 'title', 'content', 'resource_url']
 
     def form_valid(self, form):
       form.instance.user = self.request.user
@@ -92,3 +95,13 @@ class ResourceUpdate(LoginRequiredMixin, UpdateView):
 class ResourceDelete(LoginRequiredMixin, DeleteView):
   model = Resource
   success_url = '/resources/index/'
+
+@login_required
+def favorites_index(request):
+  user_favorites = Favorite.objects.filter(user=request.user)
+  return render(request, 'favorites/index.html', {'favorites': user_favorites})
+
+@login_required
+def assoc_resource(request, resource_id):
+  Favorite.objects.create(user_id=request.user.id, resource_id=resource_id)
+  return redirect('favorites_index')
