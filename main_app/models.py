@@ -12,7 +12,25 @@ CATEGORIES = (
     ('HR', 'Hiring Resources'),
 )
 
+class Resource(models.Model):
+    category = models.CharField(
+        max_length=2,
+        choices=CATEGORIES,
+        default=CATEGORIES[0][0],
+    )
+    title = models.CharField(max_length=150)
+    content = models.CharField(max_length=999)
+    resource_url = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.title}"
+    
+    def get_absolute_url(self):
+        return reverse('resources_index')
 # Create your models here.
+
+
 
 class JobApp(models.Model):
     company = models.CharField(max_length=100)
@@ -34,22 +52,7 @@ class JobApp(models.Model):
     def get_absolute_url(self):
         return reverse('jobapps_index')
 
-class Resource(models.Model):
-    category = models.CharField(
-        max_length=2,
-        choices=CATEGORIES,
-        default=CATEGORIES[0][0],
-    )
-    title = models.CharField(max_length=150)
-    content = models.CharField(max_length=999)
-    resource_url = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f"{self.title}"
-    
-    def get_absolute_url(self):
-        return reverse('resources_index')
 
 class Comment(models.Model):
     content = models.CharField(max_length=140)
@@ -62,3 +65,7 @@ class Comment(models.Model):
 
     class Meta:
         ordering=['-comment_date']
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
