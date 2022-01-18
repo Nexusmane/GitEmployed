@@ -7,9 +7,9 @@
   <div class="card-content">
     <span class="card-title">{{ resource.title }}</span>
     <p>Category: {{ resource.get_category_display }}</p>
-    <p>Excitement: {{ resource.resource_url }}</p>
-    <p>Job Title: {{ resource.content }}</p>
-    <p>Description: {{ resource.replies }}</p>
+    <p>Url: <a target="_blank" href="https://{{ resource.resource_url }}">{{ resource.resource_url }}</a></p>
+    <p>Description: {{ resource.content }}</p>
+    <p>Posted By: @{{ resource.user }}</p>
   </div>
   <div class="card-action">
   </div>

@@ -26,7 +26,7 @@
         const dateEl2 = document.getElementById('id_follow_up_date');
         M.Datepicker.init(dateEl2, {
           format: 'yyyy-mm-dd',
-          defaultDate: new Date(),
+          defaultDate: new Date(Date.now() + 12096e5),
           setDefaultDate: true,
           autoClose: true
         });
