@@ -42,6 +42,12 @@
             <p>@{{comment.user}}</p>
             <p>{{comment.content}}</p>
             <p>{{comment.comment_date}}</p>
+            {% if user.id == resource.user.id or comment.user.id == user.id %}
+            <form action="{% url 'delete_comment' resource.id comment.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Remove Comment</button>
+          </form>
+          {% endif %}
         {% endfor %}
 </div>
 

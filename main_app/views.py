@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import JobApp, Resource, Favorite
+from .models import JobApp, Resource, Favorite, Comment
 from .forms import CommentForm
 from datetime import date, datetime
 from django.db.models.signals import post_save
@@ -81,6 +81,10 @@ def add_comment(request, resource_id):
     new_comment.comment_date = datetime.now()
     new_comment.user = request.user
     new_comment.save()
+  return redirect('resources_detail', resource_id=resource_id)
+
+def delete_comment(request, resource_id, comment_id):
+  Comment.objects.get(id=comment_id).delete()
   return redirect('resources_detail', resource_id=resource_id)
 
 class ResourceCreate(LoginRequiredMixin, CreateView):
