@@ -12,3 +12,20 @@ body {
     padding-top: 0;
     text-align: right;
   }
+
+  .brand-logo {
+    font-family: 'Barlow Semi Condensed';
+    font-weight: 700;
+  }
+
+  .employed {
+    font-style: italic;
+  }
+
+  #homelogo {
+    max-width: 55px;
+    max-height: 55px;
+    width: 55px;
+    height: 55px;
+    transform: translateY(-2.5px) ;
+  }
