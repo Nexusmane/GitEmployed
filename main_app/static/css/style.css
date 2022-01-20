@@ -26,9 +26,9 @@ body {
     font-family: 'Barlow Semi Condensed';
     font-weight: 700;
     font-size: 10vw;
-    text-shadow: 7px -5px 5px #283593, 12px -5px 15px rgb(1, 191, 191);
     text-align: center;
-    color: white;
+    color: black;
+    text-decoration: underline;
   }
 
   .employed {
@@ -56,6 +56,22 @@ body {
     margin-bottom: 50px;
     min-height: 25vh;
     min-width: 25vw;
+  }
+
+  .prof-pic {
+    height: 20vh;
+    width: 20vw;
+    max-height: 20vh;
+    max-width: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .prof-pic p {
+    font-size: 34px;
   }
 
   .prof-pic img {
@@ -104,6 +120,12 @@ body {
     font-weight: 500;
     text-shadow: 2px 2px 5px rgb(161, 242, 242), 5px 5px 10px #283593;
   }
+
+  .page-subtitle {
+    text-align: center;
+    font-weight: 500;
+    text-shadow: 2px 2px 5px #4d5696;
+  }
   
   .nav-wrapper li a:hover{
     background-color: #e8eaf6 ;
@@ -141,4 +163,31 @@ body {
 
   .hidden {
     display: none;
+  }
+
+  .green-add-button {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sort-btn {
+    background-color: #283593;
+    text-decoration: none;
+    color: white;
+    height: 50px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted #e8eaf6;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px black;
+  }
+
+  .sort-btn:hover {
+    color: white;
+    animation: smooth-scale 0.5s forwards;
   }

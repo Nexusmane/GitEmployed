@@ -18,6 +18,10 @@
     {% if resource.id in favorite %}
     <form action="{% url 'favorites_delete' favorite_id.id %}" method="POST">
       {% csrf_token %}
+      {% if resource.user == user %}
+        <a href="{% url 'resources_update' resource.id %}">Edit</a>
+        <a href="{% url 'resources_delete' resource.id %}">Delete</a>
+      {% endif %}
       <input type="submit" class="btn red lighten-1" value="Remove From Favorites">
     </form>
     {% else %}
