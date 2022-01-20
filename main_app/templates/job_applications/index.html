@@ -3,17 +3,12 @@
 
 <h1 class="page-title">Application List</h1>
 
-<form class="index-buttons-container" method="get" action="{% url 'jobapps_create' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn indigo darken-1" value="Create New JobApp">
-</form>
-<p class="page-title">Sort by</p>
+<p class="page-subtitle">Sort by</p>
 <div class="index-buttons-container">
-  <a class="btn" href="{% url 'jobapps_index_by_company' %}">Company Name</a>
-  <a class="btn" href="{% url 'jobapps_index_by_date' %}">Submission Date</a>
-  <a class="btn" href="{% url 'jobapps_index_by_excitement' %}">Excitement Level</a>
-  <a class="btn" href="{% url 'jobapps_index_by_status' %}">Status</a>
+  <a class="btn-flat" href="{% url 'jobapps_index_by_company' %}">Company Name</a>|
+  <a class="btn-flat" href="{% url 'jobapps_index_by_date' %}">Submission Date</a>|
+  <a class="btn-flat" href="{% url 'jobapps_index_by_excitement' %}">Excitement Level</a>|
+  <a class="btn-flat" href="{% url 'jobapps_index_by_status' %}">Status</a>
 </div>
 {% for job in jobapps %}
   <div class="card">
@@ -32,7 +27,9 @@
   <h1>Create one <a href="{% url 'jobapps_create' %}">here</a>.</h1>
 
 {% endfor %}
-<a href="{% url 'jobapps_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>
+<div class="green-add-button" >
+  <a href="{% url 'jobapps_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>
+</div>
 <script defer>
   const selectEl = document.getElementById('id_options');
   M.FormSelect.init(selectEl); 

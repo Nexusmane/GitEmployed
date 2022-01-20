@@ -2,13 +2,9 @@
 {% block content %}
 
 <h1 class="page-title">Resource List</h1>
-
-<form class="index-buttons-container" method="get" action="{% url 'resources_create' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn indigo darken-1" value="Add Resource">
-  </form>
-  
+<hr>
+<h6 class="page-subtitle">Don't see what you like? Either add a New Resource above or by clicking the green button below!</h6>
+<hr style="margin-bottom: 50px">
 
 {% for resource in resources %}
   <div class="card">
@@ -23,8 +19,10 @@
   </div>
   {% empty %}
 <h1> Oh no! There aren't any resources!</h1>
-<h1>Be the first and make one<a href="{% url 'resources_create' %}">here</a>!</h1>
+<h1>Be the first and make one <a href="{% url 'resources_create' %}">here</a>!</h1>
 
 {% endfor %}
-<a href="{% url 'resources_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>
-{% endblock %}
+<div class="green-add-button" >
+  <a ALIGN="center" href="{% url 'resources_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>
+  {% endblock %}
+</div>
