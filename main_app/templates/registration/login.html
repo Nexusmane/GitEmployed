@@ -2,15 +2,19 @@
 {% block content %}
 
 
-<h1>Git In</h1>
+<h1 class="page-title">Git In</h1>
 
-<form method="post" action="{% url 'login' %}">
+<form ALIGN='center' class="main-form" method="post" action="{% url 'login' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" class="btn" value="login">
+    <br>
+    <button type="submit" class="btn indigo darken-1">Login</button>
     <input type="hidden" name="next" value="{{ next }}">
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'signup' %}">New around here? Git Started Here!</a>
   </form>
-  <a class="dropdown-item" href="{% url 'signup' %}">New around here? Git Started Here!</a>
 
   
 {% endblock %} 

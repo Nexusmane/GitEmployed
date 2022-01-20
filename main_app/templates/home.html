@@ -21,10 +21,67 @@
 
 <h4 class="meet-devs"> Meet the devs </h4>
 <div id="image-block" class="img-container">
-    <div><img class="prof-pic" id="jackson-pic" src="https://i.imgur.com/yEuRbbo.jpg?1"></div>
-    <div><img class="prof-pic" id="ernest-pic" src="https://i.imgur.com/rtsJsUX.jpg?1"></div>
-    <div><img class="prof-pic" id="jack-pic" src="https://i.imgur.com/PEiZNUJ.jpg?1"></div>
+    <div class="prof-pic">
+        <img id="jackson-pic" src="https://i.imgur.com/yEuRbbo.jpg?1">
+        <div class="hidden dev-metadata" id="jackson-data">
+            <p>Jackson Cole</p>
+            <a href="https://www.github.com/nexusmane">Github</a>
+            <a href="https://www.linkedin.com/in/jacksonccole">LinkedIn</a>
+        </div>
+
+    </div>
+    <div class="prof-pic">
+        <img id="ernest-pic" src="https://i.imgur.com/rtsJsUX.jpg?1">
+        <div class="hidden dev-metadata" id="ernest-data">
+            <p>Ernest Bruno</p>
+            <a href="https://www.github.com/nexticodes">Github</a>
+            <a href="https://www.linkedin.com/in/ernestbruno">LinkedIn</a>
+        </div>
+    </div>
+    <div class="prof-pic">
+        <img id="jack-pic" src="https://i.imgur.com/PEiZNUJ.jpg?1">
+        <div class="hidden dev-metadata" id="jack-data">
+            <p>Jack Hansen</p>
+            <a href="https://www.github.com/jhhansen00">Github</a>
+            <a href="https://www.linkedin.com/in/-jackhansen">LinkedIn</a>
+        </div>
+
+    </div>
 </div>
+<script>
+    let jacksonPic = document.querySelector('#jackson-pic');
+    let jacksonData = document.querySelector('#jackson-data');
+    let jackPic = document.querySelector('#jack-pic');
+    let jackData = document.querySelector('#jack-data');
+    let ernestPic = document.querySelector('#ernest-pic');
+    let ernestData = document.querySelector('#ernest-data');
+
+
+    jacksonPic.addEventListener('click', e => {
+        jacksonPic.classList.toggle('hidden');
+        jacksonData.classList.toggle('hidden');
+    })
+    jacksonData.addEventListener('click', e => {
+        jacksonPic.classList.toggle('hidden');
+        jacksonData.classList.toggle('hidden');
+    })
+    jackPic.addEventListener('click', e => {
+        jackPic.classList.toggle('hidden');
+        jackData.classList.toggle('hidden');
+    })
+    jackData.addEventListener('click', e => {
+        jackPic.classList.toggle('hidden');
+        jackData.classList.toggle('hidden');
+    })
+    ernestPic.addEventListener('click', e => {
+        ernestPic.classList.toggle('hidden');
+        ernestData.classList.toggle('hidden');
+    })
+    ernestData.addEventListener('click', e => {
+        ernestPic.classList.toggle('hidden');
+        ernestData.classList.toggle('hidden');
+    })
+</script>
 
 
 {% endblock %}

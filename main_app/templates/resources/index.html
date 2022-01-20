@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Resource List</h1>
+<h1 class="page-title">Resource List</h1>
 
-<form method="get" action="{% url 'resources_create' %}">
+<form class="index-buttons-container" method="get" action="{% url 'resources_create' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" class="btn" value="Add Resource">
+    <input type="submit" class="btn indigo darken-1" value="Add Resource">
   </form>
   
 
@@ -21,6 +21,16 @@
       </div>
     </a>
   </div>
+  {% empty %}
+<h1> THERE AIN'T NO RESOURCES IN HERE.</h1>
+<h1>ADD ONE AT THE <a href="{% url 'resources_create' %}">NEW RESOURCES PAGE</a>.</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h6>thanks. gtfo.</h6>
+
 {% endfor %}
 
 {% endblock %}

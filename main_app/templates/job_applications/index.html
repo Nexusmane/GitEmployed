@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Application List</h1>
+<h1 class="page-title">Application List</h1>
 
-<form method="get" action="{% url 'jobapps_create' %}">
+<form class="index-buttons-container" method="get" action="{% url 'jobapps_create' %}">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" class="btn" value="Create New JobApp">
+  <input type="submit" class="btn indigo darken-1" value="Create New JobApp">
 </form>
 {% for job in jobapps %}
   <div class="card">
@@ -18,6 +18,15 @@
       </div>
     </a>
   </div>
+  {% empty %}
+  <h1> THERE AIN'T NO JOBAPPS IN HERE.</h1>
+  <h1>ADD ONE AT THE <a href="{% url 'jobapps_create' %}">NEW JOBAPP PAGE</a>.</h1>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h6>thanks. gtfo.</h6>
 {% endfor %}
 
 {% endblock %}
