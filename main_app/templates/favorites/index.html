@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Favorites</h1>
+<h1 class="page-title">Favorites</h1>
 
 {% for resource in favorites %}
   <div class="card">
@@ -14,6 +14,16 @@
       </div>
     </a>
   </div>
+{% empty %}
+<h1> YOU DON'T GOT NO FAVORITES.</h1>
+<h1>GIT SOME AT THE <a href="{% url 'resources_index' %}">RESOURCES PAGE</a>.</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h6>thanks. gtfo.</h6>
+
 {% endfor %}
 
 {% endblock %}
