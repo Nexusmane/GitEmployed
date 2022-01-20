@@ -21,7 +21,7 @@ def home(request):
   return render(request, 'home.html')
 
 def apps_index(request):
-  jobapps = JobApp.objects.all()
+  jobapps = JobApp.objects.filter(user_id=request.user.id)
   return render(request, 'job_applications/index.html', { 'jobapps': jobapps })
 
 def apps_detail(request, jobapp_id):
