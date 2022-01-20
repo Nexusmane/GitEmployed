@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import JobApp, Resource, Favorite, Comment
-from .forms import CommentForm
+from .forms import CommentForm, FilterForm
 from datetime import date, datetime
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
@@ -22,7 +22,8 @@ def home(request):
 
 def apps_index(request):
   jobapps = JobApp.objects.filter(user_id=request.user.id)
-  return render(request, 'job_applications/index.html', { 'jobapps': jobapps })
+  filter_form = FilterForm()
+  return render(request, 'job_applications/index.html', { 'jobapps': jobapps})
 
 def apps_detail(request, jobapp_id):
   jobapp = JobApp.objects.get(id=jobapp_id)
@@ -117,3 +118,23 @@ def favorites_delete(request, favorite_id):
 def assoc_resource(request, resource_id):
   Favorite.objects.create(user_id=request.user.id, resource_id=resource_id)
   return redirect('favorites_index')
+
+
+# sort by Company Name, Excitement Level, Date Submitted, Status: Completed / In Progress
+@login_required
+def apps_index_by_company(request):
+  jobapps = JobApp.objects.filter(user=request.user).order_by('company')
+  return render(request, 'job_applications/index.html', {'jobapps': jobapps})
+    
+@login_required
+def apps_index_by_date(request):
+  jobapps = JobApp.objects.filter(user=request.user).order_by('-submission_date')
+  return render(request, 'job_applications/index.html', {'jobapps': jobapps})
+
+@login_required
+def apps_index_by_excitement(request):
+  jobapps = JobApp.objects.filter(user=request.user).order_by('-excitement_level')
+  return render(request, 'job_applications/index.html', {'jobapps': jobapps})
+
+def apps_index_by_status(request):
+  pass
