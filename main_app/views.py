@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import JobApp, Resource, Favorite, Comment
-from .forms import CommentForm, FilterForm
+from .forms import CommentForm
 from datetime import date, datetime
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
