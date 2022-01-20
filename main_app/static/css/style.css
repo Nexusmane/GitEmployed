@@ -58,7 +58,7 @@ body {
     min-width: 25vw;
   }
 
-  .prof-pic {
+  .prof-pic img {
     max-height: 20vh;
     max-width: 20vw;
     margin: 10px; 
@@ -137,4 +137,8 @@ body {
     background-color: white;
     border-radius: 10px;
     border: 1px solid black;
+  }
+
+  .hidden {
+    display: none;
   }
