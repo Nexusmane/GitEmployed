@@ -15,14 +15,11 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 
-
-
 def home(request):
   return render(request, 'home.html')
 
 def apps_index(request):
   jobapps = JobApp.objects.filter(user_id=request.user.id)
-  filter_form = FilterForm()
   return render(request, 'job_applications/index.html', { 'jobapps': jobapps})
 
 def apps_detail(request, jobapp_id):
@@ -43,10 +40,9 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-
 class JobAppCreate(LoginRequiredMixin, CreateView):
   model = JobApp
-  fields = ['company', 'job_title', 'submission_date', 'follow_up_date', 'job_post_url', 'description', 'notes', 'excitement_level', 'resume_url', 'cover_letter_url']
+  fields = ['company', 'job_title', 'submission_date', 'follow_up_date', 'job_post_url', 'description', 'notes', 'excitement_level', 'resume_url', 'cover_letter_url', 'status']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -54,12 +50,11 @@ class JobAppCreate(LoginRequiredMixin, CreateView):
 
 class JobAppUpdate(LoginRequiredMixin, UpdateView):
     model = JobApp
-    fields = ['excitement_level', 'job_title', 'description', 'follow_up_date', 'job_post_url', 'notes', 'resume_url', 'cover_letter_url']
+    fields = ['excitement_level', 'job_title', 'description', 'follow_up_date', 'job_post_url', 'notes', 'resume_url', 'cover_letter_url', 'status']
 
 class JobAppDelete(LoginRequiredMixin, DeleteView):
     model = JobApp
     success_url = '/apps/index/'
-
 
 def resources_index(request):
   resources = Resource.objects.all()
@@ -72,7 +67,6 @@ def resources_detail(request, resource_id):
   # if favorite is True:
   favorite_id = Favorite.objects.filter(resource_id=resource_id).first()
   return render(request, 'resources/detail.html', { 'resource': resource, 'comment_form': comment_form, 'favorite': favorite, 'favorite_id': favorite_id })
-
 
 def add_comment(request, resource_id):
   form = CommentForm(request.POST)
@@ -96,7 +90,6 @@ class ResourceCreate(LoginRequiredMixin, CreateView):
       form.instance.user = self.request.user
       return super().form_valid(form)
 
-
 class ResourceUpdate(LoginRequiredMixin, UpdateView):
   model = Resource
   fields = ['category', 'title', 'content', 'resource_url']
@@ -119,7 +112,6 @@ def assoc_resource(request, resource_id):
   Favorite.objects.create(user_id=request.user.id, resource_id=resource_id)
   return redirect('favorites_index')
 
-
 # sort by Company Name, Excitement Level, Date Submitted, Status: Completed / In Progress
 @login_required
 def apps_index_by_company(request):
@@ -137,4 +129,5 @@ def apps_index_by_excitement(request):
   return render(request, 'job_applications/index.html', {'jobapps': jobapps})
 
 def apps_index_by_status(request):
-  pass
+  jobapps = JobApp.objects.filter(user=request.user).order_by('-status')
+  return render(request, 'job_applications/index.html', {'jobapps': jobapps})

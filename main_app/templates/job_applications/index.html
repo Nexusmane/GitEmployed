@@ -13,7 +13,7 @@
   <a class="btn" href="{% url 'jobapps_index_by_company' %}">Company Name</a>
   <a class="btn" href="{% url 'jobapps_index_by_date' %}">Submission Date</a>
   <a class="btn" href="{% url 'jobapps_index_by_excitement' %}">Excitement Level</a>
-  <a class="btn" href="{% url 'jobapps_index_by_status' %}" disabled>Status</a>
+  <a class="btn" href="{% url 'jobapps_index_by_status' %}">Status</a>
 </div>
 {% for job in jobapps %}
   <div class="card">
@@ -22,21 +22,17 @@
         <span class="card-title">{{ job.company }}</span>
         <p>Title: {{ job.job_title }}</p>
         <p>Excitement: {{ job.excitement_level }}</p>
+        <p>Status: {{ job.get_status_display }}</p>
       </div>
     </a>
   </div>
 
   {% empty %}
-  <h1> THERE AIN'T NO JOBAPPS IN HERE.</h1>
-  <h1>ADD ONE AT THE <a href="{% url 'jobapps_create' %}">NEW JOBAPP PAGE</a>.</h1>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <h6>thanks. gtfo.</h6>
+  <h1>You don't have any job applications yet!</h1>
+  <h1>Create one <a href="{% url 'jobapps_create' %}">here</a>.</h1>
+
 {% endfor %}
-<button class="btn-floating pulse green">+</button>
+<a href="{% url 'jobapps_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>
 <script defer>
   const selectEl = document.getElementById('id_options');
   M.FormSelect.init(selectEl); 
