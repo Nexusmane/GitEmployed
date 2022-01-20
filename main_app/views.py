@@ -22,7 +22,6 @@ def home(request):
 
 def apps_index(request):
   jobapps = JobApp.objects.filter(user_id=request.user.id)
-  filter_form = FilterForm()
   return render(request, 'job_applications/index.html', { 'jobapps': jobapps})
 
 def apps_detail(request, jobapp_id):
@@ -46,7 +45,7 @@ def signup(request):
 
 class JobAppCreate(LoginRequiredMixin, CreateView):
   model = JobApp
-  fields = ['company', 'job_title', 'submission_date', 'follow_up_date', 'job_post_url', 'description', 'notes', 'excitement_level', 'resume_url', 'cover_letter_url']
+  fields = ['company', 'job_title', 'submission_date', 'follow_up_date', 'job_post_url', 'description', 'notes', 'excitement_level', 'resume_url', 'cover_letter_url', 'status']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -54,7 +53,7 @@ class JobAppCreate(LoginRequiredMixin, CreateView):
 
 class JobAppUpdate(LoginRequiredMixin, UpdateView):
     model = JobApp
-    fields = ['excitement_level', 'job_title', 'description', 'follow_up_date', 'job_post_url', 'notes', 'resume_url', 'cover_letter_url']
+    fields = ['excitement_level', 'job_title', 'description', 'follow_up_date', 'job_post_url', 'notes', 'resume_url', 'cover_letter_url', 'status']
 
 class JobAppDelete(LoginRequiredMixin, DeleteView):
     model = JobApp
@@ -137,4 +136,5 @@ def apps_index_by_excitement(request):
   return render(request, 'job_applications/index.html', {'jobapps': jobapps})
 
 def apps_index_by_status(request):
-  pass
+  jobapps = JobApp.objects.filter(user=request.user).order_by('-status')
+  return render(request, 'job_applications/index.html', {'jobapps': jobapps})

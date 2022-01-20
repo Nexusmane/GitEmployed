@@ -2,6 +2,17 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+STATUS = (
+    ('1', 'Screening'),
+    ('2', 'First Interview!'),
+    ('3', 'Second Interview!'),
+    ('4', 'Third Interview!'),
+    ('5', 'Received Job Offer!'),
+    ('6', 'Accepted Offer!'),
+    ('7', 'Declined Offer'),
+    ('8', 'Rejected'),
+)
+
 CATEGORIES = (
     ('IP', 'Interview Prep'),
     ('CC', 'Coding Challenge'),
@@ -43,6 +54,11 @@ class JobApp(models.Model):
     excitement_level = models.IntegerField()
     resume_url = models.CharField(max_length=999)
     cover_letter_url = models.CharField(max_length=999)
+    status = models.CharField(
+        max_length=1,
+        choices=STATUS,
+        default=STATUS[0][0],
+    )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
