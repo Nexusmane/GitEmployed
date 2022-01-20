@@ -8,6 +8,13 @@
   {{ form.as_p }}
   <input type="submit" class="btn indigo darken-1" value="Create New JobApp">
 </form>
+<p class="page-title">Sort by</p>
+<div class="index-buttons-container">
+  <a class="btn" href="{% url 'jobapps_index_by_company' %}">Company Name</a>
+  <a class="btn" href="{% url 'jobapps_index_by_date' %}">Submission Date</a>
+  <a class="btn" href="{% url 'jobapps_index_by_excitement' %}">Excitement Level</a>
+  <a class="btn" href="{% url 'jobapps_index_by_status' %}" disabled>Status</a>
+</div>
 {% for job in jobapps %}
   <div class="card">
     <a href="{% url 'jobapps_detail' job.id %}">
@@ -18,6 +25,7 @@
       </div>
     </a>
   </div>
+
   {% empty %}
   <h1> THERE AIN'T NO JOBAPPS IN HERE.</h1>
   <h1>ADD ONE AT THE <a href="{% url 'jobapps_create' %}">NEW JOBAPP PAGE</a>.</h1>
@@ -28,5 +36,10 @@
   <br>
   <h6>thanks. gtfo.</h6>
 {% endfor %}
+<button class="btn-floating pulse green">+</button>
+<script defer>
+  const selectEl = document.getElementById('id_options');
+  M.FormSelect.init(selectEl); 
+</script>
 
 {% endblock %}
