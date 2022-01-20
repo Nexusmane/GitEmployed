@@ -15,14 +15,8 @@
     </a>
   </div>
 {% empty %}
-<h1> YOU DON'T GOT NO FAVORITES.</h1>
-<h1>GIT SOME AT THE <a href="{% url 'resources_index' %}">RESOURCES PAGE</a>.</h1>
-<br>
-<br>
-<br>
-<br>
-<br>
-<h6>thanks. gtfo.</h6>
+<h1> You currently don't have any favorites!</h1>
+<h1>Git some <a href="{% url 'resources_index' %}">here</a>.</h1>
 
 {% endfor %}
 

@@ -41,8 +41,6 @@ class Resource(models.Model):
         return reverse('resources_index')
 # Create your models here.
 
-
-
 class JobApp(models.Model):
     company = models.CharField(max_length=100)
     job_title = models.CharField(max_length=50)
@@ -67,8 +65,6 @@ class JobApp(models.Model):
 
     def get_absolute_url(self):
         return reverse('jobapps_index')
-
-
 
 class Comment(models.Model):
     content = models.CharField(max_length=140)

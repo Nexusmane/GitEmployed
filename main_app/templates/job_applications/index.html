@@ -28,14 +28,9 @@
   </div>
 
   {% empty %}
-  <h1> THERE AIN'T NO JOBAPPS IN HERE.</h1>
-  <h1>ADD ONE AT THE <a href="{% url 'jobapps_create' %}">NEW JOBAPP PAGE</a>.</h1>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <h6>thanks. gtfo.</h6>
+  <h1>You don't have any job applications yet!</h1>
+  <h1>Create one <a href="{% url 'jobapps_create' %}">here</a>.</h1>
+
 {% endfor %}
 <a href="{% url 'jobapps_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>
 <script defer>

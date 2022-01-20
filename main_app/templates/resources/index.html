@@ -22,14 +22,8 @@
     </a>
   </div>
   {% empty %}
-<h1> THERE AIN'T NO RESOURCES IN HERE.</h1>
-<h1>ADD ONE AT THE <a href="{% url 'resources_create' %}">NEW RESOURCES PAGE</a>.</h1>
-<br>
-<br>
-<br>
-<br>
-<br>
-<h6>thanks. gtfo.</h6>
+<h1> Oh no! There aren't any resources!</h1>
+<h1>Be the first and make one<a href="{% url 'resources_create' %}">here</a>!</h1>
 
 {% endfor %}
 <a href="{% url 'resources_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>

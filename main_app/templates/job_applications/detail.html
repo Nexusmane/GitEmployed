@@ -13,8 +13,8 @@
     <p>Submission Date: {{ jobapp.submission_date }}</p>
     <p>Follow Up Date: {{ jobapp.follow_up_date }}</p>
     <p>notes: {{ jobapp.notes }}</p>
-    <p>Resume Used: {{ jobapp.resume_url }}</p>
-    <p>Cover Letter Used: {{ jobapp.cover_letter_url }}</p>
+    <p>Resume Used: <a target="_blank" href="{{ jobapp.resume_url }}">{{ jobapp.resume_url }}</a></p>
+    <p>Cover Letter Used: <a target="_blank" href="{{ jobapp.cover_letter_url }}">{{ jobapp.cover_letter_url }}</a></p>
   </div>
   <div class="card-action">
     <a href="{% url 'jobapps_update' jobapp.id %}">Edit</a>

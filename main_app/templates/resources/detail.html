@@ -33,7 +33,6 @@
   </div>
 </div>
 
-
   <form class="main-form"  action="{% url 'add_comment' resource.id %}" method="POST">
   {% csrf_token %}
   {{ comment_form.as_p }}

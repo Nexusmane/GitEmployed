@@ -15,8 +15,6 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 
-
-
 def home(request):
   return render(request, 'home.html')
 
@@ -42,7 +40,6 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-
 class JobAppCreate(LoginRequiredMixin, CreateView):
   model = JobApp
   fields = ['company', 'job_title', 'submission_date', 'follow_up_date', 'job_post_url', 'description', 'notes', 'excitement_level', 'resume_url', 'cover_letter_url', 'status']
@@ -59,7 +56,6 @@ class JobAppDelete(LoginRequiredMixin, DeleteView):
     model = JobApp
     success_url = '/apps/index/'
 
-
 def resources_index(request):
   resources = Resource.objects.all()
   return render(request, 'resources/index.html', { 'resources': resources })
@@ -71,7 +67,6 @@ def resources_detail(request, resource_id):
   # if favorite is True:
   favorite_id = Favorite.objects.filter(resource_id=resource_id).first()
   return render(request, 'resources/detail.html', { 'resource': resource, 'comment_form': comment_form, 'favorite': favorite, 'favorite_id': favorite_id })
-
 
 def add_comment(request, resource_id):
   form = CommentForm(request.POST)
@@ -95,7 +90,6 @@ class ResourceCreate(LoginRequiredMixin, CreateView):
       form.instance.user = self.request.user
       return super().form_valid(form)
 
-
 class ResourceUpdate(LoginRequiredMixin, UpdateView):
   model = Resource
   fields = ['category', 'title', 'content', 'resource_url']
@@ -117,7 +111,6 @@ def favorites_delete(request, favorite_id):
 def assoc_resource(request, resource_id):
   Favorite.objects.create(user_id=request.user.id, resource_id=resource_id)
   return redirect('favorites_index')
-
 
 # sort by Company Name, Excitement Level, Date Submitted, Status: Completed / In Progress
 @login_required
