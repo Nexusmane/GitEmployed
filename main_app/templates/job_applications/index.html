@@ -3,7 +3,7 @@
 
 <h1 class="page-title">Application List</h1>
 
-<p class="page-subtitle">Sort by</p>
+<h6 ALIGN="center">SORT BY</h6>
 <div class="index-buttons-container">
   <a class="btn-flat" href="{% url 'jobapps_index_by_company' %}">Company Name</a>|
   <a class="btn-flat" href="{% url 'jobapps_index_by_date' %}">Submission Date</a>|
@@ -11,7 +11,15 @@
   <a class="btn-flat" href="{% url 'jobapps_index_by_status' %}">Status</a>
 </div>
 {% for job in jobapps %}
-  <div class="card">
+  <div class="card
+    {% if job.status|add:'0' < 6 %}
+      {{'application-progress'}}
+    {% elif job.status|add:'0' < 8 %}
+      {{'application-accepted'}}
+    {% else %}
+      {{'application-rejected'}}
+    {% endif %}
+    ">
     <a href="{% url 'jobapps_detail' job.id %}">
       <div class="card-content">
         <span class="card-title">{{ job.company }}</span>
@@ -27,9 +35,7 @@
   <h1>Create one <a href="{% url 'jobapps_create' %}">here</a>.</h1>
 
 {% endfor %}
-<div class="green-add-button" >
-  <a href="{% url 'jobapps_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>
-</div>
+<a href="{% url 'jobapps_create' %}" class="add-button"><button class="btn-floating btn-large pulse green">+</button></a>
 <script defer>
   const selectEl = document.getElementById('id_options');
   M.FormSelect.init(selectEl); 

@@ -3,7 +3,7 @@
 
 <h1 class="page-title">Resource List</h1>
 <hr>
-<h6 class="page-subtitle">Don't see what you like? Either add a New Resource above or by clicking the green button below!</h6>
+<h5 ALIGN="center">Don't see what you like? Either add a New Resource above or by clicking the green button below!</h5>
 <hr style="margin-bottom: 50px">
 
 {% for resource in resources %}
@@ -22,7 +22,7 @@
 <h1>Be the first and make one <a href="{% url 'resources_create' %}">here</a>!</h1>
 
 {% endfor %}
-<div class="green-add-button" >
+<div class="add-button" >
   <a ALIGN="center" href="{% url 'resources_create' %}"><button class="btn-floating btn-large pulse green">+</button></a>
   {% endblock %}
 </div>
